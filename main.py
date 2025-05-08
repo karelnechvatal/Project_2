@@ -55,3 +55,14 @@ def get_player_input(board, player_symbol):
             print("Invalid input: Please enter a valid number from 1 to 9.")
 2
 
+# Vyhodnocení výhry
+def check_win(board, symbol):
+    win_combinations = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], # řádky
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], # sloupce
+        [0, 4, 8], [2, 4, 6]             # diagonály
+    ]
+    for combo in win_combinations:
+        if all(board[i] == symbol for i in combo):
+            return True
+    return False
