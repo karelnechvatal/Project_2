@@ -66,3 +66,7 @@ def check_win(board, symbol):
         if all(board[i] == symbol for i in combo):
             return True
     return False
+
+# Kontrola remízy
+def is_draw(board):
+    return all(cell != EMPTY_CELL for cell in board)
