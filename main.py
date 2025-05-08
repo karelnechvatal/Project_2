@@ -70,3 +70,29 @@ def check_win(board, symbol):
 # Kontrola remízy
 def is_draw(board):
     return all(cell != EMPTY_CELL for cell in board)
+
+# Hlavní funkce hry
+def play_game():
+    print_intro()
+    board = create_board()
+    current_player = 0
+
+    while True:
+        print_board(board)
+        position = get_player_input(board, PLAYER_SYMBOLS[current_player])
+        board[position] = PLAYER_SYMBOLS[current_player]
+
+        if check_win(board, PLAYER_SYMBOLS[current_player]):
+            print_board(board)
+            print(f"Congratulations, the player {PLAYER_SYMBOLS[current_player]} WON!")
+            break
+        elif is_draw(board):
+            print_board(board)
+            print("It's a draw!")
+            break
+
+        current_player = 1 - current_player  # Přepnutí hráče
+
+# Spuštění programu
+if __name__ == "__main__":
+    play_game()
